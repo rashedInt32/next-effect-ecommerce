@@ -1,65 +1,170 @@
+import Link from "next/link";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
+const products = [
+  {
+    id: "prod_001",
+    name: "Wireless Bluetooth Headphones",
+    description: "Premium noise-cancelling headphones with 30-hour battery life",
+    price: 7999,
+    stock: 45,
+    imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop",
+    category: "electronics",
+    createdAt: "2025-01-15T10:30:00Z",
+  },
+  {
+    id: "prod_002",
+    name: "Minimalist Leather Wallet",
+    description: "Slim genuine leather wallet with RFID protection",
+    price: 4999,
+    stock: 120,
+    imageUrl: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=500&h=500&fit=crop",
+    category: "accessories",
+    createdAt: "2025-01-14T08:00:00Z",
+  },
+  {
+    id: "prod_003",
+    name: "Smart Fitness Watch",
+    description: "Track your health with heart rate monitor and GPS",
+    price: 19999,
+    stock: 30,
+    imageUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop",
+    category: "electronics",
+    createdAt: "2025-01-13T14:20:00Z",
+  },
+  {
+    id: "prod_004",
+    name: "Organic Cotton T-Shirt",
+    description: "Comfortable everyday tee made from 100% organic cotton",
+    price: 2999,
+    stock: 200,
+    imageUrl: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
+    category: "clothing",
+    createdAt: "2025-01-12T09:45:00Z",
+  },
+  {
+    id: "prod_005",
+    name: "Portable Bluetooth Speaker",
+    description: "Waterproof speaker with 360° sound and 12-hour battery",
+    price: 8999,
+    stock: 75,
+    imageUrl: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=500&fit=crop",
+    category: "electronics",
+    createdAt: "2025-01-11T16:30:00Z",
+  },
+  {
+    id: "prod_006",
+    name: "Stainless Steel Water Bottle",
+    description: "Insulated bottle keeps drinks cold 24hrs or hot 12hrs",
+    price: 3499,
+    stock: 150,
+    imageUrl: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop",
+    category: "lifestyle",
+    createdAt: "2025-01-10T11:15:00Z",
+  },
+  {
+    id: "prod_007",
+    name: "Mechanical Keyboard",
+    description: "RGB backlit keyboard with cherry MX switches",
+    price: 12999,
+    stock: 40,
+    imageUrl: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=500&h=500&fit=crop",
+    category: "electronics",
+    createdAt: "2025-01-09T13:00:00Z",
+  },
+  {
+    id: "prod_008",
+    name: "Canvas Backpack",
+    description: "Durable backpack with laptop compartment and USB port",
+    price: 5999,
+    stock: 85,
+    imageUrl: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop",
+    category: "accessories",
+    createdAt: "2025-01-08T10:00:00Z",
+  },
+];
+
+function formatPrice(cents: number): string {
+  return `$${(cents / 100).toFixed(2)}`;
+}
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="container mx-auto px-4 py-8">
+      <section className="mb-12">
+        <div className="rounded-lg bg-gradient-to-r from-primary/10 via-primary/5 to-background p-8 md:p-12">
+          <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+            Welcome to ShopEffect
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-4 max-w-2xl text-muted-foreground md:text-lg">
+            Discover amazing products at unbeatable prices. Quality meets
+            affordability in our curated collection.
           </p>
+          <Button size="lg" className="mt-6" asChild>
+            <Link href="#products">Shop Now</Link>
+          </Button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section id="products">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Featured Products
+          </h2>
+          <Badge variant="secondary">{products.length} items</Badge>
         </div>
-      </main>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {products.map((product) => (
+            <Card key={product.id} className="group overflow-hidden">
+              <CardHeader className="p-0">
+                <div className="relative aspect-square overflow-hidden bg-muted">
+                  <Image
+                    src={product.imageUrl}
+                    alt={product.name}
+                    fill
+                    className="object-cover transition-transform group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                  <Badge className="absolute right-2 top-2" variant="secondary">
+                    {product.category}
+                  </Badge>
+                </div>
+              </CardHeader>
+              <CardContent className="p-4">
+                <CardTitle className="line-clamp-1 text-lg">
+                  {product.name}
+                </CardTitle>
+                <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+                  {product.description}
+                </p>
+                <div className="mt-3 flex items-center justify-between">
+                  <span className="text-lg font-bold">
+                    {formatPrice(product.price)}
+                  </span>
+                  <span className="text-sm text-muted-foreground">
+                    {product.stock} in stock
+                  </span>
+                </div>
+              </CardContent>
+              <CardFooter className="p-4 pt-0">
+                <Button className="w-full" asChild>
+                  <Link href={`/products/${product.id}`}>View Details</Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
