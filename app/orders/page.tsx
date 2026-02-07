@@ -4,12 +4,7 @@ import { ArrowLeft, Package, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const orders = [
   {
@@ -23,14 +18,16 @@ const orders = [
         name: "Wireless Bluetooth Headphones",
         price: 7999,
         quantity: 2,
-        imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop",
+        imageUrl:
+          "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop",
       },
       {
         productId: "prod_006",
         name: "Stainless Steel Water Bottle",
         price: 3499,
         quantity: 3,
-        imageUrl: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop",
+        imageUrl:
+          "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop",
       },
     ],
   },
@@ -45,7 +42,8 @@ const orders = [
         name: "Smart Fitness Watch",
         price: 19999,
         quantity: 1,
-        imageUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop",
+        imageUrl:
+          "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop",
       },
     ],
   },
@@ -60,14 +58,16 @@ const orders = [
         name: "Mechanical Keyboard",
         price: 12999,
         quantity: 1,
-        imageUrl: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=500&h=500&fit=crop",
+        imageUrl:
+          "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=500&h=500&fit=crop",
       },
       {
         productId: "prod_002",
         name: "Minimalist Leather Wallet",
         price: 4999,
         quantity: 1,
-        imageUrl: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=500&h=500&fit=crop",
+        imageUrl:
+          "https://images.unsplash.com/photo-1627123424574-724758594e93?w=500&h=500&fit=crop",
       },
     ],
   },

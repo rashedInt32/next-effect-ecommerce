@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@effect/platform": "^0.94.2",
+    "@effect/sql": "^0.49.0",
     "@effect/sql-pg": "^0.50.1",
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
