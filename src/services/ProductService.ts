@@ -2,8 +2,7 @@ import { Product, ProductId, ProductInput } from "@/src/domain/models";
 import { SqlError } from "@effect/sql/SqlError";
 import { ProductRepo } from "@/src/infrastructure/repositories/ProductRepo";
 import { Effect } from "effect";
-import { SqlClient } from "@effect/sql";
-import { ProductNotFoundError } from "@/src/domain/errors";
+import { ProductNotFoundError, ValidationError } from "@/src/errors";
 
 export class ProductService extends Effect.Service<ProductService>()(
   "ProductService",
@@ -11,7 +10,16 @@ export class ProductService extends Effect.Service<ProductService>()(
     effect: Effect.gen(function* () {
       const repo = yield* ProductRepo;
 
-      const getAll = (): Effect.Effect<Product[], SqlError> => repo.findAll();
+      const getAll = (): Effect.Effect<Product[], SqlError> =>
+        repo.findAll().pipe(
+          Effect.mapError(
+            (error) =>
+              new SqlError({
+                cause: error,
+                message: "Failed to fetch products",
+              }),
+          ),
+        );
       const getById = (
         id: string,
       ): Effect.Effect<Product, ProductNotFoundError | SqlError> =>
@@ -41,14 +49,26 @@ export class ProductService extends Effect.Service<ProductService>()(
       const updateStock = (
         id: ProductId,
         stock: number,
-      ): Effect.Effect<Product, ProductNotFoundError | SqlError> =>
+      ): Effect.Effect<
+        Product,
+        ProductNotFoundError | ValidationError | SqlError
+      > =>
         Effect.gen(function* () {
           const product = yield* repo.findById(id);
+          if (!product) {
+            return yield* ProductNotFoundError.make({ id });
+          }
+          if (stock < 0) {
+            return yield* ValidationError.make({
+              message: "Stock cannot be negative",
+            });
+          }
           const rows = yield* repo.updateStock(product.id, stock);
           return rows[0] as Product;
         });
 
       return { getAll, getById, create, updateStock };
     }),
+    dependencies: [ProductRepo.Default],
   },
 ) {}

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "migrate": "export $(cat .env | xargs) && ./scripts/migrate.sh"
   },
   "dependencies": {
     "@effect/platform": "^0.94.2",
